@@ -1,7 +1,7 @@
 function noop(){};
 
-export class MyPromise{
-    constructor(executor) {
+class MyPromise{
+    constructor(executor){
         this.queue = [];
         this.errorHandler = noop;
         this.finallyHandler = noop;
@@ -14,6 +14,7 @@ export class MyPromise{
             this.finallyHandler();
         }
     }
+
     onResolve(data){
         this.queue.forEach(callback=>{
             data = callback(data);
@@ -44,19 +45,30 @@ export class MyPromise{
 }
 
 
-const promise = new MyPromise((resolve,reject)=>{
-    setTimeout(()=>{
-        resolve('MY PROMISE')
-    },500)
-})
+const requestURL = 'https://jsonplaceholder.typicode.com/posts';
 
-promise
-    .then(course=>{
-        console.log('Danielyan Hovo', course)
+function ajax(url,config){
+    return new MyPromise((resolve,reject)=>{
+        const xhr = new XMLHttpRequest()
+        xhr.open(config,url)
+        xhr.responseType = "json";
+        xhr.onload = () =>{
+            if(xhr.status>=400){
+                reject(xhr.response)
+            }else{
+                resolve(xhr.response)
+            }
+        }
+        xhr.onerror=()=>{
+            reject(xhr.response)
+        }
+        xhr.send()
     })
-    .catch(err=>{
-        console.log('Error',err)
+}
+
+ajax(requestURL,'GET')
+    .then(data=>{
+
+        console.log(data);
     })
-    .finally(()=>{
-        console.log('My Promise Finally')
-    })
+    .catch(err=>console.log('Error',err))
