@@ -1,38 +1,64 @@
-.App {
-  text-align: center;
+.App{
+  display: flex;
+  flex-direction: row;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.post{
+  border:2px solid green;
   display: flex;
   flex-direction: column;
+  padding-left: 5px;
+  margin-bottom: 5px;
+  width: 23rem;
+}
+
+.post-name{
+  left: 0;
+  border:2px solid blue;
+  width: 6rem;
+}
+
+.comment-block{
+
+}
+
+.comment{
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  height: 1rem;
   align-items: center;
+}
+
+.count{
+  display: flex;
+}
+
+button{
+  border-radius: 8px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: aqua;
 }
 
-.App-link {
-  color: #61dafb;
+.statistic{
+  margin-left: 5rem;
+  background-color: aliceblue;
+  height: 30rem;
+  width: 34rem;
+  border:2px solid orange;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list-1{
+  width: 17rem;
+  border-right: 3px solid black;
 }
+
+.list-2{
+  width: 17rem;
+}
+
