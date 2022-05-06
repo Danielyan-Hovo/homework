@@ -1,17 +1,18 @@
-import Post from "./components/Post";
-import {useEffect, useState} from "react";
-import Statistics from "./components/Statistics";
+import React, {Component} from 'react';
+import Comments from "./components/Comments";
 
+class App extends Component {
+    render() {
+        console.log('App')
 
-
-function App() {
-
-  return (
-    <div className='App'>
-      <Post/>
-        <Statistics/>
-    </div>
-  );
+        return (
+            <div className='App'>
+                <Comments
+                    currentUserId="1"
+                />
+            </div>
+        );
+    }
 }
 
 export default App;
