@@ -1,5 +1,5 @@
-import Comments from "./comments/Comments";
-import FormValidator from "./comments/FormValidator";
+import Comments from "./Components/Comments";
+import FormValidator from "./Components/FormValidator";
 
 const App = () => {
     return (
