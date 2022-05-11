@@ -159,6 +159,10 @@ export const createComment = async (text, parentId = null) => {
     };
 };
 
+export const likeComment = async (commentId) => {
+    return commentId;
+}
+
 export const updateComment = async (text) => {
     return { text };
 };

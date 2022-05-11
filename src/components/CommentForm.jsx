@@ -5,13 +5,12 @@ import InputEmoji from 'react-input-emoji'
 class CommentForm extends Component {
     constructor(props) {
         super(props);
-        console.log('CommentsForm')
         this.state = {
             text : this.props.initialText,
         }
-    }
-    isTextareaDisabled = this.state.text.length === 0;
+        //this.isTextareaDisabled = this.state.text.length === 0
 
+    }
     onSubmit = (event) => {
         event.preventDefault();
         this.props.handleSubmit(this.state.text);
@@ -19,19 +18,18 @@ class CommentForm extends Component {
     };
 
     render() {
-        console.log('CommentsForm')
         return (
-            <form onSubmit={this.onSubmit} className='form'>
+            <form onSubmit={this.onSubmit} className='comment-form'>
                 <InputEmoji
                     value={this.state.text}
-                    onChange={this.setText}
+                    onChange={(arg)=>this.setState({text:arg})}
                     cleanOnEnter
                     placeholder="Type a message"
                 />
 
 
                 <div className='buttons'>
-                    <button className="comment-form-button" disabled={this.isTextareaDisabled}>
+                    <button className="comment-form-button" disabled={this.state.text.length === 0}>
                         {this.props.submitLabel}
                     </button>
                     {this.props.hasCancelButton && (
@@ -55,5 +53,3 @@ CommentForm.defaultProps = {
 }
 
 export default CommentForm;
-
-

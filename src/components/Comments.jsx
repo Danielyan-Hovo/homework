@@ -13,24 +13,20 @@ import Pagination from "./Pagination";
 class Comments extends Component {
     constructor(props) {
         super(props);
-        console.log('Comments')
         this.state = {
             backendComments : [],
             activeComments : null,
             page : 1,
             name : '',
-            foundPosts : this.props.rootComments
+            foundPosts : this.rootComments
         }
     }
 
-    rootComments = this.state.backendComments.filter((backendComment) => backendComment.parentId === null);
 
     getReplies = (commentId) =>
         this.state.backendComments
             .filter((backendComment) => backendComment.parentId === commentId)
-            .sort(
-                (a, b) =>
-
+            .sort((a, b) =>
                     new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
             );
     addComment = (text, parentId) => {
@@ -38,7 +34,6 @@ class Comments extends Component {
             this.setState({ backendComments : [comment, ...this.state.backendComments] })
             this.setState({ foundPosts : [comment, ...this.state.backendComments] })
             this.setState({ activeComment : null });
-            console.log('Comments')
         });
     };
 
@@ -68,9 +63,10 @@ class Comments extends Component {
 
     componentDidMount() {
         getCommentsApi().then((data) => {
-            console.log('data  ',data);
             this.setState({ backendComments : data});
             this.setState({ foundPosts : data});
+            this.rootComments = this.state.backendComments.filter((backendComment) => backendComment.parentId === null);
+
         });
     }
 
@@ -91,16 +87,14 @@ class Comments extends Component {
 
 
     render() {
-        console.log('Comments')
+        console.log('found posts ',this.state.foundPosts)
         return (
             <div className="comments">
-                <h1>Danielyan Hovhannes</h1>
                 <h3 className="comments-title">Comments</h3>
                 <div className="comment-form-title">Write comment</div>
                 <CommentForm submitLabel="Write" handleSubmit={this.addComment} />
                 <div className="comments-container">
                     <button className='sort-btn'>Sort</button>
-
                     <input
                         type="search"
                         value={this.state.name}
@@ -109,17 +103,17 @@ class Comments extends Component {
                         placeholder="Filter"
                     />
                     {this.state.foundPosts && this.state.foundPosts.length > 0 ? (
-                        this.state.foundPosts.map((post) => (
+                        this.state.foundPosts.slice(this.state.page*5-5,this.state.page*5).map((post) => (
                             <Comment
                                 key={post.id}
                                 comment={post}
                                 replies={this.getReplies(post.id)}
                                 activeComment={this.state.activeComment}
-                                setActiveComment={()=>this.setState((arg)=>({activeComment:arg}))}
+                                setActiveComment={(arg1,arg2)=>this.setState({activeComment:{id:arg1,type:arg2}})}
                                 addComment={this.addComment}
                                 deleteComment={this.deleteComment}
                                 updateComment={this.updateComment}
-                                currentUserId={this.currentUserId}
+                                currentUserId={this.props.currentUserId}
                                 likes={post.likes}
                             />
                         ))
@@ -129,12 +123,11 @@ class Comments extends Component {
 
 
                 </div>
-                <Pagination value={this.state.page} range={5} onChange={()=>this.setState((arg)=>({page:arg}))} />
+                <Pagination value={this.state.page} range={5} onChange={(n)=>this.setState({ page:n})} data={this.state.foundPosts} />
             </div>
         );
     }
 }
-
 Comments.defaultProps = {currentUserId:"1"}
 
 export default Comments;

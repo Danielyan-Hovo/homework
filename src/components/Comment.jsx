@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import CommentForm from "./CommentForm";
 
+const fiveMinutes = 300000;
+
 class Comment extends Component {
     constructor(props) {
         super(props);
-        console.log('Comment')
         this.state = {
             like : this.props.likes
         }
     }
+
+
     handleLike = () => {
         this.setState(prev=> ({like : prev.like + 1 }))
     };
@@ -21,8 +24,7 @@ class Comment extends Component {
         this.props.activeComment &&
         this.props.activeComment.id === this.props.comment.id &&
         this.props.activeComment.type === "replying";
-    fiveMinutes = 300000;
-    timePassed = new Date() - new Date(this.props.comment.createdAt) > this.fiveMinutes;
+    timePassed = new Date() - new Date(this.props.comment.createdAt) > fiveMinutes;
     canDelete =
         this.props.currentUserId === this.props.comment.userId && this.props.replies.length === 0 && !this.timePassed;
     canReply = Boolean(this.props.currentUserId);
@@ -32,7 +34,6 @@ class Comment extends Component {
 
 
     render() {
-        console.log('Comment')
         return (
             <div key={this.props.comment.id} className="comment">
                 <div className="comment-image-container">
@@ -67,7 +68,8 @@ class Comment extends Component {
                         {this.canReply && (
                             <div
                                 className="comment-action"
-                                onClick={() => this.props.setActiveComment({ id: this.props.comment.id, type: "replying" })}
+                                onClick={()=>{this.props.setActiveComment(this.props.comment.id, "replying" )
+                                console.log('replaying',this.isReplying)}}
                             >
                                 <img className='icon' src="/comment.png" alt="reply"/>
                             </div>
@@ -109,6 +111,7 @@ class Comment extends Component {
                                     parentId={this.props.comment.id}
                                     replies={[]}
                                     currentUserId={this.props.currentUserId}
+                                    likes={reply.likes}
                                 />
                             ))}
                         </div>
@@ -118,7 +121,6 @@ class Comment extends Component {
         );
     }
 }
-
 Comment.defaultProps = {
     parentId : null,
     currentUserId : '1',
