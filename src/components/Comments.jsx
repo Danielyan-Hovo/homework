@@ -87,7 +87,6 @@ class Comments extends Component {
 
 
     render() {
-        console.log('found posts ',this.state.foundPosts)
         return (
             <div className="comments">
                 <h3 className="comments-title">Comments</h3>

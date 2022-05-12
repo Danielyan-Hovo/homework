@@ -274,7 +274,7 @@
 .list-block{
   display: flex;
   justify-content: space-around;
-  height: 30rem;
+  height: 20rem;
   width: 70%;
   border-radius: 15px;
   border: 5px solid rebeccapurple;
@@ -289,7 +289,7 @@
 
 .list{
   text-align: center;
-  width: 7em;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -298,11 +298,22 @@
   width: 2em;
   height: 2em;
   cursor: pointer;
+  margin-bottom: 2em;
+  margin-left: .5em;
 }
 
 .btn-block{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
+.popular{
+  display: flex;
+}
 
+.likes{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}

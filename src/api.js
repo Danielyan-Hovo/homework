@@ -124,7 +124,7 @@ export const getComments = async () => {
             userId: "4",
             parentId: "1",
             createdAt: "2021-08-16T23:00:33.010+02:00",
-            likes: 5
+            likes: 13
         },
         {
             id: "15",
@@ -142,7 +142,7 @@ export const getComments = async () => {
             userId: "3",
             parentId: null,
             createdAt: "2021-08-16T23:00:33.010+02:00",
-            likes: 5
+            likes: 16
         },
     ];
 };

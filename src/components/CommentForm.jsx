@@ -8,7 +8,6 @@ class CommentForm extends Component {
         this.state = {
             text : this.props.initialText,
         }
-        //this.isTextareaDisabled = this.state.text.length === 0
 
     }
     onSubmit = (event) => {

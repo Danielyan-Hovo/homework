@@ -21,7 +21,6 @@ class Pagination extends Component {
 
     changeNumber = (n) => {
         if (typeof n === "number" && n > 0 && n <= this.props.range) {
-            console.log('Page ', this.props.data.slice(n*5-5,n*5) )
             this.props.onChange(n);
         }
     }

@@ -11,7 +11,6 @@ class Comment extends Component {
         }
     }
 
-
     handleLike = () => {
         this.setState(prev=> ({like : prev.like + 1 }))
     };
@@ -25,6 +24,7 @@ class Comment extends Component {
         this.props.activeComment.id === this.props.comment.id &&
         this.props.activeComment.type === "replying";
     timePassed = new Date() - new Date(this.props.comment.createdAt) > fiveMinutes;
+
     canDelete =
         this.props.currentUserId === this.props.comment.userId && this.props.replies.length === 0 && !this.timePassed;
     canReply = Boolean(this.props.currentUserId);
