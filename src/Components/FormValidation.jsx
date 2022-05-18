@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Validator from "./Validator";
 import ErrorMessage from "./ErrorMessage";
-import Schema, {err, schema} from "./Schema";
 
 class FormValidation extends Component {
     constructor(props) {
