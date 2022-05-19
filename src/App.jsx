@@ -1,14 +1,16 @@
 import './App.css';
 import Sidebar from './components/Sidebar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Overview from './pages/Overview';
-import { Reports, ReportsOne, ReportsTwo, ReportsThree } from './pages/Reports';
-import Team from './pages/Team';
+import {Main} from './layouts'
+import Store from '../src/store/configureStore'
 
 function App() {
   return (
       <Router>
         <Sidebar />
+          <Store>
+              <Main />
+          </Store>
         <Routes>
 
         </Routes>

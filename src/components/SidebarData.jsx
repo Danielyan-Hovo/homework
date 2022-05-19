@@ -2,10 +2,54 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
 
 export const SidebarData = [
     {
+        title: 'Button',
+        path: '/button',
+        icon: <AiIcons.AiFillHome />,
+    },
+    {
+        title: 'Input',
+        path: '/input',
+        icon: <IoIcons.IoIosPaper />,
+    },
+    {
+        title: 'Text Area',
+        path: '/textarea',
+        icon: <FaIcons.FaCartPlus />
+    },
+    {
+        title: 'Select',
+        path: '/select',
+        icon: <IoIcons.IoMdPeople />
+    },
+    {
+        title: 'Radio',
+        path: '/radio',
+        icon: <FaIcons.FaEnvelopeOpenText />,
+    },
+    {
+        title: 'Checkbox',
+        path: '/checkbox',
+        icon: <IoIcons.IoMdHelpCircle />
+    }
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ {
         title: 'Overview',
         path: '/overview',
         icon: <AiIcons.AiFillHome />,
@@ -88,4 +132,4 @@ export const SidebarData = [
         path: '/support',
         icon: <IoIcons.IoMdHelpCircle />
     }
-];
+ */
